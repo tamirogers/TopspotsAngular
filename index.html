@@ -4,13 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>TopSpotsAngular</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/app/styles/styles.css">
+    <!-- endinject -->
 </head>
-<h1> San Diego Top Spots -in Angular </h1>
-<!-- Controller is in charge of building a model. -->
+<!-- added as vm to MainController -->
 
-<body ng-controller='MainController'>
+<body ng-controller='MainController as vm'>
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <!-- endbower -->
+    <h1> San Diego Top Spots -in Angular </h1>
+    <!-- Controller is in charge of building a model. -->
     <table border="1" id="table" class="table-striped">
         <thead>
             <tr>
@@ -18,55 +27,60 @@
                 <th>Description</th>
                 <th>Link</th>
             </tr>
-            <!-- the ng-repeat directive loops through data. topspots is the name put in the scope, mytopspots is what I named.  {{  }} these are expressions, they allow us to write javascript in html.  topspots
-            references data, .name has the property from the database.-->
-            <tr ng-repeat='topspots in mytopspots'>
+            <!-- the ng-repeat directive loops through data. topspots is the name put in the scope, mytopspots is what I named.  {{  }} these are expressions, they allow us to write javascript in html.  topspots references data, .name has the property from the database.  Added vm. to ng-repeat-->
+            <tr ng-repeat='topspots in vm.topspots'>
                 <th> {{topspots.name}} </th>
                 <th> {{topspots.description}} </th>
                 <th>
-                    <!--               This button sends users to the link.  target="_blank" opens this is new browser window
-  .location is needed with the [] to access the values in array position 0 & 1 -->
+                    <!-- This button sends users to the link.  target="_blank" opens in new browser window. location is needed with the [] to access the values in array position 0 & 1 -->
                     <button>
                         <a target="_blank" href="https://www.google.com/maps?q={{topspots.location[0]}},{{topspots.location[1]}}"> Click here for location</a>
                     </button>
                 </th>
-                <!--     didn't need this...  -->
-                <!-- <tr data-ng-repeat="product in products">
-    <td> {{products.name}} </td>
-</tr>
- -->
+            </tr>
         </thead>
         <tbody>
         </tbody>
-        <!-- The extra credit added table.  ng-model directive moves data from the view to the model -->
+        <!-- The extra credit added table.  ng-model directive moves data from the view to the model 
+         I added the vm. to the ng-model and ng-click-->
     </table>
     <div class="form-horizontal">
         <div class="form-group">
             <label class="col-md-2 control-label">Add a new location</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" name="name" ng-model="name" />
+                <input type="text" class="form-control" name="name" ng-model="vm.name" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">Description</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" name="employees" ng-model="description" />
+                <input type="text" class="form-control" name="employees" ng-model="vm.description" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">Link</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" name="headoffice" ng-model="location" />
+                <input type="text" class="form-control" name="headoffice" ng-model="vm.link1" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Link</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="headoffice" ng-model="vm.link2" />
             </div>
         </div>
         <!--    ng-click calls the addRow function, like an onclick -->
         <div class="form-group">
             <div style="padding-left:110px">
-                <input type="button" value="Submit" class="btn btn-primary" ng-click="addRow()" />
+                <input type="button" value="Submit" class="btn btn-primary" ng-click="vm.addRow()" />
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <!-- inject:js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/topspotsangular.controller.js"></script>
+    <script src="/app/topspotsangular.factories.js"></script>
+    <!-- endinject -->
 </body>
 
 </html>

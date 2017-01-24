@@ -1,0 +1,21 @@
+{
+  "name": "TopspotsAngular",
+  "main": "index.js",
+  "homepage": "https://github.com/tamirogers/TopspotsAngular",
+  "authors": [
+    "Tami R <tami1989@yahoo.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-toastr": "^2.1.1",
+    "angular": "^1.6.1"
+  }
+}
